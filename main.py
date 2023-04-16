@@ -12,6 +12,23 @@ import requests
 
 # print(coord)
 
-response = requests.get(url = 'http://api.sunrise-sunset.org/json')
 
-print(response.json())
+
+my_lat = 54.760731
+my_lng = -1.332580
+
+parameter = {
+    'lat' : my_lat,
+    'lng' : my_lng,
+    'formatted': 0
+}
+
+response = requests.get('http://api.sunrise-sunset.org/json', params=parameter)
+
+response
+
+data = response.json()
+sun_rise = data['results']['sunrise']
+sun_set = data['results']['sunset']
+
+print(f'The sun will rise at {sun_rise} and set at {sun_set}')
